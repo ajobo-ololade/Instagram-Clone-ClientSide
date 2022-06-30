@@ -1,0 +1,73 @@
+#link{
+    margin: 20px;
+   border:thin solid rgb(153, 148, 148);
+  
+   
+
+}
+.lik{
+    text-decoration: none;
+}
+.bigdiv{
+    border: thin solid rgb(153, 148, 148);
+
+}
+
+
+.img{
+   margin-left: 30%;
+}
+.image{
+    margin-left: 20px;
+}
+.text{
+    font-size: medium;
+}
+label{
+    font-size: 10px;
+}
+.form-floating, .form-floating .form-control{
+    height: 45px !important;
+}
+.text{
+    font-size: 12px;
+}
+.texts{
+
+    text-decoration: none;
+    font-size: 12px;
+    margin: 10px;
+}
+/* @media (max-width:700px) {
+    label{
+        font-size: 13px;
+    }
+
+    .text{
+        font-size: 16px;
+    }
+    .texts{
+    
+        text-decoration: none;
+        font-size: 16px;
+        margin: 10px;
+    }
+
+    
+} */
+.dasimg{
+    margin-left: 16%;
+}
+.navform{
+    margin-left: 100%;
+}
+#navbars{
+    border-bottom: thin solid rgb(224, 217, 217);
+
+}
+/* #border-btn{
+    width: 100px;
+} */
+/* body.modal-open div.modal-backdrop { 
+    z-index: 0 !important; 
+} */
