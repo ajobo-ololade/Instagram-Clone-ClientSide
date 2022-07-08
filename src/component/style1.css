@@ -71,3 +71,20 @@ label{
 /* body.modal-open div.modal-backdrop { 
     z-index: 0 !important; 
 } */
+.imageL{
+ width: 420px;
+  height: 450px
+}
+#followers{
+    display: flex;
+}
+@media (max-width:700px) {
+    .imageL{
+        width: 300px;
+        height: 350px;
+
+    }
+    #followers{
+        display: none;
+    }
+}

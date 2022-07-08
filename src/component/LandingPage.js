@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from './Navbar'
 import { Slide } from "react-slideshow-image";
 import 'react-slideshow-image/dist/styles.css'
-import food from '../assets/food.webp'
+import avata from '../assets/avatar.png'
 import Footer from './Footer';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 function LandingPage() {
   const style = {
     textAlign: 'center',
-    background: 'skyblue',
+    backgroundImage: {avata},
     // padding: '10px 0',
     borderRadius: "100%",
     // fontSize: '30px',
@@ -28,16 +28,18 @@ function LandingPage() {
     autoplay: false,
     indicators: false,
   };
-  // const url = "http://localhost:5005/user/displayimg"
+  const url = "http://localhost:5005/user/details"
   
   const url2 = "http://localhost:5005/user/"
   const [image, setimage] = useState([])
   const token = localStorage.token
   const navigate = useNavigate()
   const [username, setusername] = useState('')
+  const [fullname, setfullname] = useState('')
   const [message, setmessage] = useState('')
   const [status, setstatus] = useState('')
-  const [test, settest] = useState('')
+  const [test, settest] = useState([])
+  const [details, setdetails] = useState([])
   useEffect(() => {
     
 
@@ -48,9 +50,10 @@ function LandingPage() {
       }}).then((res) => {
         if (res.data.status) {
           // console.log(res.data.staus)
-          settest(res.data.result)
-          // setimage(res.data.userDetails.Post)
+         
+          setimage(res.data.userDetails.Post)
           setusername(res.data.userDetails.username)
+          setfullname(res.data.userDetails.fullname)
         } else {
         
           
@@ -67,9 +70,21 @@ function LandingPage() {
   
   
       })
+      axios.get(url).then((res)=>{
+        settest(res.data.result)
+      
+          setdetails(res.data.result)
+
+          
+          
+        
+          
+        
+      })
   
+      // console.log(details)
       console.log(test)
-      // setimage(res.data.result)
+      // setimage(detres.data.result)
 
 
     
@@ -90,14 +105,14 @@ function LandingPage() {
                 <div>
                   <div>
                     <Slide {...properties}>
-                      <div style={style}></div>
-                      <div style={style}></div>
-                      <div style={style}></div>
-                      <div style={style}></div>
-                      <div style={style}></div>
-                      <div style={style}></div>
-                      <div style={style}></div>
-                      <div style={style}></div>
+                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
+                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
+                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
+                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
+                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
+                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
+                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
+                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
                     </Slide>
                   </div>
                 </div>
@@ -109,15 +124,15 @@ function LandingPage() {
               </div>
 
 
-              {/* {image.map((images, index) => (
+              {image.map((images, index) => (
               <div className='mt-4'>
                 <div class="card" >
                 
                   <div class="card-body ">
-                    <h5 class="card-title fs-6 text-muted"><i class="uil uil-user-circle fs-3"></i> __alixem</h5>
+                    <h5 class="card-title fs-6 text-muted"><i class="uil uil-user-circle fs-3"></i>{username}</h5>
                     
                     
-                      <img src={images.image_url} class="card-img-button" alt="..." style={{ width: "420px", height: "450px" }} />
+                      <img src={images.image_url} class="card-img-button imageL" alt="..."  />
                     
 
                     <div className="d-flex">
@@ -132,20 +147,21 @@ function LandingPage() {
                 </div>
               </div>
                  ))}
- */}
+
 
 
             </div>
-
+                
           </div>
+          
           <div className="col-md-4 mt-4">
             <div className='d-flex'>
               <div>
                 <i className="uil uil-user-circle fs-1" />
               </div>
               <div className='ms-3'>
-                <p className='mt-3'>__alixem </p>
-                <p className='fs-8 text-muted' style={{ fontSize: "12px", marginTop: "-12px" }}>Ajobo Ololade</p>
+                <p className='mt-3'>{username} </p>
+                <p className='fs-8 text-muted' style={{ fontSize: "12px", marginTop: "-12px" }}>{fullname}</p>
 
 
               </div>
@@ -155,7 +171,31 @@ function LandingPage() {
 
 
             </div>
-            <div className='d-flex'>
+
+            {details.filter(name=>name.username!=username).map((details,index)=>(
+                  <div id="followers">
+                  <div>
+                    <i className="uil uil-user-circle fs-1" />
+                  </div>
+                  <div className='ms-3'>
+                    <p className='mt-3'>{details.username} </p>
+                    <p className='fs-8 text-muted ' style={{ fontSize: "12px", marginTop: "-12px" }}>{details.fullname}</p>
+    
+    
+                  </div>
+                  <div className='mt-4 ' style={{ marginLeft: "120px", fontSize: "12px" }}>
+                    <a href="" style={{ textDecoration: "none" }}>Follow</a>
+                  </div>
+    
+    
+                </div>
+                ))}
+                
+
+            
+
+
+            {/* <div className='d-flex'>
               <div>
                 <i className="uil uil-user-circle fs-1" />
               </div>
@@ -170,9 +210,8 @@ function LandingPage() {
               </div>
 
 
-            </div>
-
-            <div className='d-flex'>
+            </div> */}
+            {/* <div className='d-flex'>
               <div>
                 <i className="uil uil-user-circle fs-1" />
               </div>
@@ -187,24 +226,8 @@ function LandingPage() {
               </div>
 
 
-            </div>
-            <div className='d-flex'>
-              <div>
-                <i className="uil uil-user-circle fs-1" />
-              </div>
-              <div className='ms-3'>
-                <p className='mt-3'>__alixem </p>
-                <p className='fs-8 text-muted' style={{ fontSize: "12px", marginTop: "-12px" }}>Ajobo Ololade</p>
-
-
-              </div>
-              <div className='mt-4 ' style={{ marginLeft: "120px", fontSize: "12px" }}>
-                <a href="" style={{ textDecoration: "none" }}>Follow</a>
-              </div>
-
-
-            </div>
-            <div className='d-flex'>
+            </div> */}
+            {/* <div className='d-flex'>
               <div>
                 <i class="uil uil-user-circle fs-1" />
               </div>
@@ -219,7 +242,7 @@ function LandingPage() {
               </div>
 
 
-            </div>
+            </div> */}
 
 
           </div>
