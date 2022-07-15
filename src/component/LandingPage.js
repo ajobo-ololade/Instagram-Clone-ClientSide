@@ -10,15 +10,15 @@ import { useNavigate } from 'react-router-dom';
 
 function LandingPage() {
   const style = {
-    textAlign: 'center',
-    backgroundImage: {avata},
-    // padding: '10px 0',
-    borderRadius: "100%",
-    // fontSize: '30px',
-    height: "60px",
-    width: "60px",
-    align: "center",
-    margin: "auto"
+    // textAlign: 'center',
+    // background:"gray",
+    // // padding: '10px 0',
+    // borderRadius: "100%",
+    // // fontSize: '30px',
+    // height: "60px",
+    // width: "60px",
+    // align: "center",
+    // margin: "auto"
   };
 
   const properties = {
@@ -27,6 +27,22 @@ function LandingPage() {
     slidesToScroll: 3,
     autoplay: false,
     indicators: false,
+    responsive:[
+      {
+        breakingpoint:1024,
+        setting:{
+          slidesToShow:5,
+          slidesToScroll:3
+        }
+      },
+      {
+        breakpoint:500,
+        setting:{
+          slidesToScroll:2,
+          slidesToScroll:1
+        }
+      }
+    ]
   };
   const url = "http://localhost:5005/user/details"
   
@@ -71,7 +87,7 @@ function LandingPage() {
   
       })
       axios.get(url).then((res)=>{
-        settest(res.data.result)
+        // settest(res.data.result)
       
           setdetails(res.data.result)
 
@@ -82,8 +98,8 @@ function LandingPage() {
         
       })
   
-      // console.log(details)
-      console.log(test)
+      console.log(details)
+      // console.log(test)
       // setimage(detres.data.result)
 
 
@@ -101,18 +117,20 @@ function LandingPage() {
           <div className="col-md-2"></div>
           <div className="col-md-5">
             <div className=''>
-              <div className="card shadow-sm p-4 mb-3">
+              <div className="card shadow-sm p-4 mb-3 mt-4">
                 <div>
                   <div>
                     <Slide {...properties}>
-                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
-                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
-                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
-                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
-                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
-                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
-                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
-                      <div style={style}><i className="uil uil-user-circle  fs-1 text-light"></i></div>
+                      
+                      <img src={avata} alt="" className="rounded" style={{width:"70px", borderRadius:"100px"}} />
+                      <img src={avata} alt="" className="rounded" style={{width:"70px", borderRadius:"100px"}} />
+                      <img src={avata} alt="" className="rounded" style={{width:"70px", borderRadius:"100px"}} />
+                      <img src={avata} alt="" className="rounded" style={{width:"70px", borderRadius:"100px"}} />
+                      <img src={avata} alt="" className="rounded" style={{width:"70px", borderRadius:"100px"}} />
+                      <img src={avata} alt="" className="rounded" style={{width:"70px", borderRadius:"100px"}} />
+                      <img src={avata} alt="" className="rounded" style={{width:"70px", borderRadius:"100px"}} />
+                      <img src={avata} alt="" className="rounded" style={{width:"70px", borderRadius:"100px"}} />
+                      <img src={avata} alt="" className="rounded" style={{width:"70px", borderRadius:"100px"}} />
                     </Slide>
                   </div>
                 </div>
@@ -124,12 +142,14 @@ function LandingPage() {
               </div>
 
 
-              {image.map((images, index) => (
-              <div className='mt-4'>
+              {details.map((images, index) => (
+                
+                images.Post.map((images) =>(
+                  <div className='mt-4'>
                 <div class="card" >
                 
                   <div class="card-body ">
-                    <h5 class="card-title fs-6 text-muted"><i class="uil uil-user-circle fs-3"></i>{username}</h5>
+                    <h5 class="card-title fs-6 text-muted"><i class="uil uil-user-circle fs-3"></i>{images.username}</h5>
                     
                     
                       <img src={images.image_url} class="card-img-button imageL" alt="..."  />
@@ -146,7 +166,8 @@ function LandingPage() {
                  
                 </div>
               </div>
-                 ))}
+                )) 
+               ))}
 
 
 
@@ -160,7 +181,7 @@ function LandingPage() {
                 <i className="uil uil-user-circle fs-1" />
               </div>
               <div className='ms-3'>
-                <p className='mt-3'>{username} </p>
+                <p className='mt-3 '>{username} </p>
                 <p className='fs-8 text-muted' style={{ fontSize: "12px", marginTop: "-12px" }}>{fullname}</p>
 
 

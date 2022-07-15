@@ -90,7 +90,7 @@ function Navbar() {
               </label>
               {/* <div class="input-group"> */}
                 {/* <span class="input-group-text">With textarea</span> */}
-                <textarea class="form-control ms-4" aria-label="With textarea" placeholder='Captions' onChange={(e)=>setcaptions(e.target.value)}></textarea>
+                <textarea class="form-control ms-4" aria-label="With textarea" placeholder='Captions' autoCorrect='off' autoComplete='off' style={{height:"18px !important"}} onChange={(e)=>setcaptions(e.target.value)}></textarea>
               {/* </div> */}
               <div>
                 {status ? <p className='text-success'>{message}</p> : <p className='text-danger'>{message}</p>}
